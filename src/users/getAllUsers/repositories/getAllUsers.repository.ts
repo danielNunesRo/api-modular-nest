@@ -7,7 +7,7 @@ export class getAllUsersRepository {
     constructor(private readonly db: DataBaseService) {}
 
     async getAllUsers(): Promise<any[]> {
-        const sql = "SELECT * FROM api.USUARIOS"
+        const sql = "SELECT NOME, EMAIL, DATA_CRIACAO FROM api.USUARIOS"
 
         return this.db.query(sql);
     }
