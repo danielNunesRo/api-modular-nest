@@ -1,6 +1,6 @@
 import { Injectable, Logger } from "@nestjs/common";
 import { DataBaseService } from "src/shared/database/database.service";
-import { UserInputDto } from "../dtos/UserInput.dto";
+
 
 @Injectable()
 export class UserRepository {
@@ -9,14 +9,14 @@ export class UserRepository {
 
     constructor(private readonly db: DataBaseService) {}
 
-    async createUser(userInputDto: UserInputDto): Promise<{message: string}> {
+    async createUser(obj: {nome: string, email: string, senha: string}): Promise<{message: string}> {
 
         const sql = "INSERT INTO API.USUARIOS u (nome, email, senha) values(:nome, :email, :senha)"
 
         const binds = {
-            nome: userInputDto.nome,
-            email: userInputDto.email,
-            senha: userInputDto.senha,
+            nome: obj.nome,
+            email: obj.email,
+            senha: obj.senha,
         }
 
         console.log('Executing SQL:', sql, 'with binds:', binds); 
